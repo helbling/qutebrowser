@@ -159,6 +159,7 @@ class HostBlocker:
                                       self._blocked_hosts)
 
         if not found:
+            print(self._local_hosts_file)
             args = objreg.get('args')
             if (config.val.content.host_blocking.lists and
                     args.basedir is None and
