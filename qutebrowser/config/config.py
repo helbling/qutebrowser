@@ -30,7 +30,7 @@ from qutebrowser.config import configdata, configexc, configtypes, configfiles
 from qutebrowser.utils import (utils, objreg, message, standarddir, log,
                                usertypes)
 from qutebrowser.misc import objects
-from qutebrowser.commands import cmdexc, cmdutils, runners
+from qutebrowser.commands import cmdexc, cmdutils
 
 
 # An easy way to access the config from other code via config.val.foo
@@ -174,6 +174,8 @@ class KeyConfig:
 
     def bind(self, key, command, *, mode, force=False, save_yaml=False):
         """Add a new binding from key to command."""
+        # Doing this here to work around a Python 3.4 circular import
+        from qutebrowser.commands import runners
         key = self._prepare(key, mode)
 
         parser = runners.CommandParser()
