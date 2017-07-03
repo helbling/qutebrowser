@@ -37,7 +37,7 @@ class TestsNormalKeyParser:
     """
 
     @pytest.fixture(autouse=True)
-    def patch_stuff(self, monkeypatch, stubs, config_stub, keyinput_bindings):
+    def patch_stuff(self, monkeypatch, stubs, keyinput_bindings):
         """Set up mocks and read the test config."""
         monkeypatch.setattr(
             'qutebrowser.keyinput.basekeyparser.usertypes.Timer',
