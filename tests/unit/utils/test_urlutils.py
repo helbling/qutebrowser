@@ -273,7 +273,7 @@ def test_special_urls(url, special):
     ('stripped ', 'www.example.com', 'q=stripped'),
     ('test-with-dash testfoo', 'www.example.org', 'q=testfoo'),
 ])
-def test_get_search_url(config_stub, url, host, query):
+def test_get_search_url(url, host, query):
     """Test _get_search_url().
 
     Args:
@@ -287,7 +287,7 @@ def test_get_search_url(config_stub, url, host, query):
 
 
 @pytest.mark.parametrize('url', ['\n', ' ', '\n '])
-def test_get_search_url_invalid(config_stub, url):
+def test_get_search_url_invalid(url):
     with pytest.raises(ValueError):
         urlutils._get_search_url(url)
 
