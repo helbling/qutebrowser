@@ -31,7 +31,7 @@ from qutebrowser.utils import utils
 
 
 @pytest.fixture
-def keyparser(config_stub, key_config_stub):
+def keyparser(key_config_stub):
     """Fixture providing a BaseKeyParser supporting count/chains."""
     kp = basekeyparser.BaseKeyParser(
         0, supports_count=True, supports_chains=True)
