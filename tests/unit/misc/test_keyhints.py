@@ -110,7 +110,7 @@ def test_special_bindings(keyhint, config_stub):
         ('&lt;', 'yellow', 'b', 'message-info cmd-&lt;b'))
 
 
-def test_color_switch(keyhint, config_stub, key_config_stub):
+def test_color_switch(keyhint, config_stub):
     """Ensure the keyhint suffix color can be updated at runtime."""
     bindings = {'normal': {'aa': 'message-info cmd-aa'}}
     config_stub.val.colors.keyhint.suffix.fg = '#ABCDEF'
@@ -139,7 +139,7 @@ def test_no_matches(keyhint, config_stub):
     (['ab*'], expected_text(('a', 'yellow', 'a', 'message-info cmd-aa'))),
     (['*'], ''),
 ])
-def test_blacklist(keyhint, config_stub, key_config_stub, blacklist, expected):
+def test_blacklist(keyhint, config_stub, blacklist, expected):
     """Test that blacklisted keychains aren't hinted."""
     config_stub.val.keyhint.blacklist = blacklist
     bindings = {'normal': {
