@@ -149,8 +149,8 @@ class WebEnginePage(QWebEnginePage):
         options = {
             QWebEnginePage.Geolocation: 'content.geolocation',
             QWebEnginePage.MediaAudioCapture: 'content.media_capture',
-            QWebEnginePage.MediaVideoCapture: 'content.media-capture',
-            QWebEnginePage.MediaAudioVideoCapture: 'content.media-capture',
+            QWebEnginePage.MediaVideoCapture: 'content.media_capture',
+            QWebEnginePage.MediaAudioVideoCapture: 'content.media_capture',
         }
         messages = {
             QWebEnginePage.Geolocation: 'access your location',
