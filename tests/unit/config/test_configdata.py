@@ -41,6 +41,7 @@ def test_init(config_stub):
         option.typ.to_str(option.default)
 
 
+@pytest.mark.issue2777
 def test_init_benchmark(benchmark):
     benchmark(configdata.init)
 

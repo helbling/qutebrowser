@@ -61,6 +61,8 @@ def _apply_platform_markers(config, item):
         ('ci', 'CI' not in os.environ, "Only runs on CI."),
         ('issue2478', os.name == 'nt' and config.webengine,
          "Broken with QtWebEngine on Windows"),
+        ('issue2777', 'CI' in os.environ and 'DOCKER' in os.environ,
+         "Broken in Docker on Travis"),
     ]
 
     for searched_marker, condition, default_reason in markers:
