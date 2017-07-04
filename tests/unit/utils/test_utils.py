@@ -943,7 +943,7 @@ class TestYaml:
     def test_load_file(self, tmpdir):
         tmpfile = tmpdir / 'foo.yml'
         tmpfile.write('[1, 2]')
-        with open(tmpfile, encoding='utf-8') as f:
+        with tmpfile.open(encoding='utf-8') as f:
             assert utils.yaml_load(f) == [1, 2]
 
     def test_dump(self):
@@ -951,6 +951,6 @@ class TestYaml:
 
     def test_dump_file(self, tmpdir):
         tmpfile = tmpdir / 'foo.yml'
-        with open(tmpfile, 'w', encoding='utf-8') as f:
+        with tmpfile.open('w', encoding='utf-8') as f:
             utils.yaml_dump([1, 2], f)
         assert tmpfile.read() == '- 1\n- 2\n'
