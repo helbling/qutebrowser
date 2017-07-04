@@ -37,7 +37,10 @@ from PyQt5.QtGui import QKeySequence, QColor, QClipboard, QDesktopServices
 from PyQt5.QtWidgets import QApplication
 import pkg_resources
 import yaml
-from yaml import SafeLoader as YamlLoader, SafeDumper as YamlDumper
+try:
+    from yaml import CSafeLoader as YamlLoader, CSafeDumper as YamlDumper
+except ImportError:  # pragma: no cover
+    from yaml import SafeLoader as YamlLoader, SafeDumper as YamlDumper
 
 import qutebrowser
 from qutebrowser.utils import qtutils, log
