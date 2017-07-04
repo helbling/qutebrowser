@@ -606,20 +606,17 @@ class TestFlagList:
     def klass(self):
         return FlagListSubclass
 
-    @pytest.fixture
-    def klass_valid_none(self):
-        """Return a FlagList with valid_values = None."""
-        return configtypes.FlagList
-
     @pytest.mark.parametrize('val', [['qux'], ['foo', 'qux'], ['foo', 'foo']])
     def test_to_py_invalid(self, klass, val):
         """Test invalid flag combinations (the rest is tested in TestList)."""
+        typ = klass(none_ok_outer=True, set_valid_values=True)
         with pytest.raises(configexc.ValidationError):
-            klass(none_ok_outer=True).to_py(val)
+            typ.to_py(val)
 
     def test_complete(self, klass):
         """Test completing by doing some samples."""
-        completions = [e[0] for e in klass().complete()]
+        typ = klass(set_valid_values=True)
+        completions = [e[0] for e in typ.complete()]
         assert 'foo' in completions
         assert 'bar' in completions
         assert 'baz' in completions
@@ -629,17 +626,17 @@ class TestFlagList:
             assert ',baz' not in val
 
     def test_complete_all_valid_values(self, klass):
-        inst = klass()
-        inst.combinable_values = None
-        completions = [e[0] for e in inst.complete()]
+        typ = klass(set_valid_values=True)
+        typ.combinable_values = None
+        completions = [e[0] for e in typ.complete()]
         assert 'foo' in completions
         assert 'bar' in completions
         assert 'baz' in completions
         assert 'foo,bar' in completions
         assert 'foo,baz' in completions
 
-    def test_complete_no_valid_values(self, klass_valid_none):
-        assert klass_valid_none().complete() is None
+    def test_complete_no_valid_values(self, klass):
+        assert klass().complete() is None
 
 
 class TestBool:
