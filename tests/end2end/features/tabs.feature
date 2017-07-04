@@ -812,6 +812,7 @@ Feature: Tab management
         And I open data/hello.txt
         And I run :tab-only
         And I run :tab-close
+        And I wait until data/numbers/7.txt is loaded
         And I wait until data/numbers/8.txt is loaded
         Then the following tabs should be open:
             - data/numbers/7.txt
